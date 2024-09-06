@@ -12,7 +12,7 @@ function App() {
     bad: 0,
   });
   const savedValue = () => {
-    JSON.parse(window.localStorage.getItem("values", values));
+    JSON.parse(window.localStorage.getItem("values"));
     if (savedValue == !null) {
       return savedValue;
     }
