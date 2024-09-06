@@ -20,7 +20,7 @@ function App() {
   };
 
   useEffect(() => {
-    window.localStorage.setItem("values", values);
+    window.localStorage.setItem("values", JSON.stringify(values));
   }, [values]);
 
   const updateFeedback = (feedbackType) => {
@@ -30,7 +30,11 @@ function App() {
     });
   };
   const resetFeedback = () => {
-    setValues(values);
+    setValues({
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    });
   };
   const totalFeedback = values.good + values.neutral + values.bad;
   const positiveFeedback = Math.round((values.good / totalFeedback) * 100);
