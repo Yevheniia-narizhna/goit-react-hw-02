@@ -6,18 +6,19 @@ import Options from "./Options/Options";
 import Notification from "./Notification/Notification";
 
 function App() {
-  const [values, setValues] = useState({
+  const rewiews = {
     good: 0,
     neutral: 0,
     bad: 0,
-  });
-  const savedValue = () => {
-    JSON.parse(window.localStorage.getItem("values"));
-    if (savedValue == !null) {
-      return savedValue;
-    }
-    return 0;
   };
+
+  const [values, setValues] = useState(() => {
+    const savedValues = window.localStorage.getItem("values");
+    if (savedValues !== null) {
+      return JSON.parse(savedValues);
+    }
+    return rewiews;
+  });
 
   useEffect(() => {
     window.localStorage.setItem("values", JSON.stringify(values));
@@ -29,13 +30,8 @@ function App() {
       [feedbackType]: values[feedbackType] + 1,
     });
   };
-  const resetFeedback = () => {
-    setValues({
-      good: 0,
-      neutral: 0,
-      bad: 0,
-    });
-  };
+  const resetFeedback = () => setValues(rewiews);
+
   const totalFeedback = values.good + values.neutral + values.bad;
   const positiveFeedback = Math.round((values.good / totalFeedback) * 100);
   return (

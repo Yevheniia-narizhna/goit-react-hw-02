@@ -1,3 +1,4 @@
+import s from "./Feedback.module.css";
 export default function Feedback({
   objFeedback,
   feedbackTotal,
@@ -5,15 +6,15 @@ export default function Feedback({
 }) {
   const { good, neutral, bad } = objFeedback;
   return (
-    <div>
+    <div className={s.feedback}>
       <div>
-        <p>Good: {good}</p>
-        <p>Neutral: {neutral}</p>
-        <p>Bad: {bad}</p>
+        <p className={s.text}> 😍 Good: {good}</p>
+        <p className={s.text}> 😐 Neutral: {neutral}</p>
+        <p className={s.text}> 👎 Bad: {bad}</p>
       </div>
       <div>
-        <p>Total: {feedbackTotal}</p>
-        <p>Positive: {feedbackPositive}%</p>
+        <p className={s.text}>Total: {feedbackTotal}</p>
+        <p className={s.text}>Positive: {feedbackPositive}%</p>
       </div>
     </div>
   );
